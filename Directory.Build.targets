@@ -1,0 +1,7 @@
+<Project>
+  <Target Name="CopyModToInstallFolder" AfterTargets="Build">
+    <Copy
+      SourceFiles="$(TargetDir)\$(AssemblyName).dll"
+      DestinationFolder="$(ModFolder)" />
+  </Target>
+</Project>
