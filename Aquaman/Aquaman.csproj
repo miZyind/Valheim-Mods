@@ -8,12 +8,13 @@
   </PropertyGroup>
   <!-- Information -->
   <PropertyGroup>
-    <Version>2022.09.15</Version>
+    <Version>2022.12.30</Version>
     <Product>Aquaman</Product>
     <AssemblyTitle>Aquaman</AssemblyTitle>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
-    <Description>Using equipment in water, just like an Aquaman!</Description>
+    <Description>Powerful Aquaman!</Description>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 </Project>

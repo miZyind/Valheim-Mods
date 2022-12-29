@@ -19,7 +19,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <!-- Information -->
     <Company>miZyind.dev</Company>
-    <Copyright>Copyright © 2022 miZyind</Copyright>
+    <Copyright>Copyright © miZyind</Copyright>
     <!-- Output -->
     <OutDir>bin</OutDir>
     <OutputType>Library</OutputType>
@@ -34,7 +34,8 @@
   <ItemGroup>
     <Reference Include="UnityEngine" HintPath="$(ManagedFolder)\UnityEngine.dll" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedFolder)\UnityEngine.CoreModule.dll" />
-    <Reference Include="assembly_valheim" HintPath="$(ManagedFolder)\assembly_valheim.dll" />
+    <Reference Include="UnityEngine.AnimationModule" HintPath="$(ManagedFolder)\UnityEngine.AnimationModule.dll" />
+    <Reference Include="assembly_valheim_publicized" HintPath="$(ManagedFolder)\publicized_assemblies\assembly_valheim_publicized.dll" />
     <Reference Include="0Harmony20" HintPath="$(BepInExFolder)\core\0Harmony20.dll" />
     <Reference Include="BepInEx" HintPath="$(BepInExFolder)\core\BepInEx.dll" />
   </ItemGroup>
