@@ -36,9 +36,9 @@
 
 ## 🗂 Mod List
 
-|  Name   |                   Description                   |
-| :-----: | :---------------------------------------------: |
-| Aquaman | Using equipment in water, just like an Aquaman! |
+|  Name   |    Description    |
+| :-----: | :---------------: |
+| Aquaman | Powerful Aquaman! |
 
 ## 🖋 Author
 
