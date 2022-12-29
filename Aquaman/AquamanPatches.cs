@@ -4,6 +4,7 @@ using HarmonyLib;
 using UnityEngine;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Collections;
 
 namespace Aquaman
 {
@@ -70,8 +71,6 @@ namespace Aquaman
                     {
                         case Skills.SkillType.Bows:
                         case Skills.SkillType.Crossbows:
-                            ___m_animator.speed = 10000;
-                            return false;
                         case Skills.SkillType.Pickaxes:
                             ___m_animator.speed = 10;
                             return false;
@@ -81,14 +80,6 @@ namespace Aquaman
                 }
             }
             return true;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Humanoid), "GetAttackDrawPercentage")]
-        static bool GetAttackDrawPercentage(ref float __result)
-        {
-            __result = 1;
-            return false;
         }
 
         [HarmonyPrefix]
@@ -111,7 +102,7 @@ namespace Aquaman
         [HarmonyPatch(typeof(Player), "Awake")]
         static void PlayerAwake(ref Player __instance)
         {
-            __instance.m_baseHP = 300;
+            __instance.m_baseHP = 400;
             __instance.m_placeDelay = 0;
             __instance.m_removeDelay = 0;
             __instance.m_baseCameraShake = 0;
@@ -149,14 +140,15 @@ namespace Aquaman
             ref Attack ___m_currentAttack
         )
         {
-            if (___m_attackHold)
+            var weapon = __instance.GetCurrentWeapon();
+            if (weapon != null)
             {
-                var weapon = __instance.GetCurrentWeapon();
                 if (
-                    weapon != null
+                    ___m_attackHold
                     && (
                         weapon.m_shared.m_skillType == Skills.SkillType.Bows
                         || weapon.m_shared.m_skillType == Skills.SkillType.Crossbows
+                        || weapon.m_shared.m_skillType == Skills.SkillType.Pickaxes
                     )
                 )
                 {
@@ -167,7 +159,20 @@ namespace Aquaman
                     weapon.m_shared.m_attack.m_requiresReload = false;
                     weapon.m_shared.m_attack.m_recoilPushback = 0;
                     weapon.m_shared.m_attack.m_reloadTime = 0;
-                    __instance.StartAttack(null, false);
+                    var attack = weapon.m_shared.m_attack.Clone();
+                    attack.Start(
+                        __instance,
+                        __instance.m_body,
+                        __instance.m_zanim,
+                        __instance.m_animEvent,
+                        __instance.m_visEquipment,
+                        weapon,
+                        null,
+                        0,
+                        1
+                    );
+                    __instance.m_lastCombatTimer = 0f;
+                    __instance.m_currentAttack = attack;
                     return false;
                 }
             }
