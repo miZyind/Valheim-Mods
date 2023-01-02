@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace Aquaman
 {
-    [BepInPlugin("miZyind.Aquaman", "Aquaman", "2022.12.30")]
+    [BepInPlugin("miZyind.Aquaman", "Aquaman", "2023.01.02")]
     class Aquaman : BaseUnityPlugin
     {
         void Awake()
